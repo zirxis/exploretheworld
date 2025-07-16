@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ZIRXIS COUNTRY - خريطة العالم التفاعلية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- svgMap CSS -->
+    <link href="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.12.2/dist/svgMap.min.css" rel="stylesheet">
+    <!-- Add to homescreen for iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+</head>
+<body>
+    <!-- الصفحة الرئيسية -->
+    <div id="landing-page" class="landing-page">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+        <div class="moving-light"></div>
+        
+        <header class="header">
+            <div class="logo">
+                <img src="logo.png" alt="ZIRXIS COUNTRY Logo" class="logo-img" aria-label="ZIRXIS COUNTRY Logo">
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="hero-section">
+                <h1 class="hero-title">اكتشف العالم</h1>
+                <p class="hero-subtitle">استكشف دول العالم وتعرف على خصائصها ومميزاتها الفريدة</p>
+                <button id="get-started-btn" class="get-started-btn" aria-label="ابدأ الاستكشاف" tabindex="0">
+                    <span>ابدأ الاستكشاف</span>
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link" data-platform="telegram" aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="#" class="social-link" data-platform="instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" data-platform="twitter" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+            <p class="footer-note">ZIRXIS COUNTRY &copy; 2023 - جميع الحقوق محفوظة</p>
+        </footer>
+    </div>
+
+    <!-- صفحة الخريطة -->
+    <div id="map-page" class="map-page hidden">
+        <header class="map-header">
+            <div class="logo-small">
+                <img src="logo.png" alt="ZIRXIS COUNTRY Logo" class="logo-img-small" aria-label="ZIRXIS COUNTRY Logo Small">
+            </div>
+            <div class="search-container">
+                <button type="button" class="clear-search" aria-label="مسح البحث">&times;</button>
+                <input type="text" id="country-search" placeholder="ابحث عن دولة..." class="search-input" aria-label="ابحث عن دولة">
+                <i class="fas fa-search search-icon"></i>
+                <div id="search-results" class="search-results hidden"></div>
+            </div>
+            <button id="back-btn" class="back-btn" aria-label="العودة" tabindex="0">
+                <i class="fas fa-arrow-right"></i>
+                <span class="btn-text">العودة</span>
+            </button>
+        </header>
+
+        <main class="map-container">
+            <div id="world-map" class="world-map">
+                <!-- سيتم إدراج الخريطة هنا -->
+            </div>
+            
+            <div id="country-info" class="country-info hidden">
+                <div class="country-info-header">
+                    <img id="country-flag" src="" alt="علم الدولة" class="country-flag" aria-label="علم الدولة">
+                    <h2 id="country-name" class="country-name"></h2>
+                    <button id="close-info" class="close-info" aria-label="إغلاق المعلومات" tabindex="0">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="country-details">
+                    <div class="detail-item">
+                        <span class="detail-label">العاصمة:</span>
+                        <span id="country-capital" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">عدد السكان:</span>
+                        <span id="country-population" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">المساحة:</span>
+                        <span id="country-area" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">العملة:</span>
+                        <span id="country-currency" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">اللغات:</span>
+                        <span id="country-languages" class="detail-value"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">تشتهر بـ:</span>
+                        <span id="country-famous" class="detail-value"></span>
+                    </div>
+                </div>
+                <div class="country-gallery hidden" id="country-gallery">
+                    <h3 class="gallery-title">معالم مشهورة</h3>
+                    <div class="gallery-container" id="gallery-container"></div>
+                </div>
+            </div>
+        </main>
+        
+        <div class="map-controls">
+            <button id="zoom-in-btn" class="map-control-btn" aria-label="تكبير الخريطة" tabindex="0">
+                <i class="fas fa-plus"></i>
+            </button>
+            <button id="zoom-out-btn" class="map-control-btn" aria-label="تصغير الخريطة" tabindex="0">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button id="reset-map-btn" class="map-control-btn" aria-label="إعادة تعيين الخريطة" tabindex="0">
+                <i class="fas fa-globe"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">جاري تحميل الخريطة...</p>
+        </div>
+    </div>
+
+    <!-- svgMap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/StephanWagner/svgMap@v2.12.2/dist/svgMap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
